@@ -34,7 +34,7 @@ const bot = new Client({
  *  COMMAND HANDLER
  ***************************/
 const commandsPath = path.join(__dirname, './interactions/commands');
-const commandFolders = fs.readdirSync(commandPath);
+const commandFolders = fs.readdirSync(commandsPath);
 
 for (const folder of commandFolders) {
     const commandPath = path.join(commandsPath, folder);
