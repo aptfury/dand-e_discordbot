@@ -192,4 +192,5 @@ process.on('unhandledRejection', error => console.error('Unhandled promise Rejec
 /****************************
  *  BOT LOGIN
  ***************************/
-bot.login(`${token}`);
+/* bot.login(`${token}`); */
+bot.login(token);

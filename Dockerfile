@@ -13,4 +13,4 @@ RUN dotenvx ext prebuild
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["dotenvx", "run", "--", "node", "src/app.js"]
