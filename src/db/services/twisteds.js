@@ -75,3 +75,5 @@ async function deleteTwisted(data) {
         console.error(e);
     }
 }
+
+module.exports = { createTwisted, doesTwistedExist, viewTwisted, getTwistedId, updateTwisted, deleteTwisted };

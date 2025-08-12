@@ -75,3 +75,5 @@ async function deleteToon(data) {
         console.error(e);
     }
 }
+
+module.exports = { createToon, doesToonExist, viewToon, getToonId, updateToon, deleteToon };
