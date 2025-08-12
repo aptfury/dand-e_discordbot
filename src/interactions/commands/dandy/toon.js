@@ -282,9 +282,8 @@ module.exports = {
             }
         }
         else if (subcommand === 'view') {
-            const toon = await viewToon({ name: toon });
-
-            await interaction.reply(`\`\`\`${JSON.stringify(toon, null, 4)}\`\`\``);
+            const search = viewToon({ name: toon })
+            await interaction.reply(`\`\`\`${JSON.stringify(search, null, 4)}\`\`\``);
             return;
         }
         else if (subcommand === 'update') {}
