@@ -2,7 +2,6 @@ FROM node:latest
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
-COPY .env .env
 
 RUN npm install
 
