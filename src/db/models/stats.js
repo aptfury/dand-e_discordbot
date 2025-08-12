@@ -1,211 +1,219 @@
+const { UUID } = require('bson');
+
 /**
  *  ABILITIES
  */
 class Active {
     constructor(data) {
-        this.id = data.id,
-        this.toon = data.toon,
-        this.name = data.name,
-        this.cooldown = data.cooldown,
-        this.cost = data.cost,
-        this.info = data.info
+        this._id = data._id || new UUID().toBinary();
+        this.toon_id = data.toon_id || 0;
+        this.name = data.name || null;
+        this.cooldown = data.cooldown || null;
+        this.cost = data.cost || null;
+        this.info = data.info || null;
     }
 }
 
 class Passive {
     constructor(data) {
-        this.id = data.id,
-        this.toon = data.toon,
-        this.name = data.name,
-        this.info = data.info
+        this._id = data._id || new UUID().toBinary();
+        this.toon_id = data.toon_id || 0;
+        this.name = data.name || null;
+        this.info = data.info || null;
     }
 }
 
 class Debuffs {
     constructor(data) {
-        this.id = data.id,
-        this.twisted = data.twisted,
-        this.effect = data.effect,
-        this.info = data.info
+        this._id = data._id || new UUID().toBinary();
+        this.twisted_id = data.twisted_id || 0;
+        this.effect = data.effect || null;
+        this.info = data.info || null;
     }
 }
 
 class Attention {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Detection {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.direct = data.direct,
-        this.peripheral = data.peripheral
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.direct = data.direct || null;
+        this.peripheral = data.peripheral || null;
     }
 }
 
 class Extraction {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Health {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Skillchecks {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.chance = data.chance,
-        this.size = data.size,
-        this.value = data.value,
-        this.subTime = data.subTime,
-        this.addProgress = data.addProgress
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.chance = data.chance || null;
+        this.size = data.size || null;
+        this.value = data.value || null;
+        this.subTime = data.subTime || null;
+        this.addProgress = data.addProgress || null;
     }
 }
 
 class Speed {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.walk = data.walk,
-        this.sprint = data.sprint,
-        this.panicWalk = data.panicWalk,
-        this.panicSprint = data.panicSprint,
-        this.suppressWalk = data.suppressWalk,
-        this.suppressSprint = data.suppressSprint
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.walk = data.walk || null;
+        this.sprint = data.sprint || null;
+        this.panicWalk = data.panicWalk || null;
+        this.panicSprint = data.panicSprint || null;
+        this.suppressWalk = data.suppressWalk || null;
+        this.suppressSprint = data.suppressSprint || null;
     }
 }
 
 class Stamina {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Stealth {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Light {
     constructor(data) {
-        this.id = data.id,
-        this.rating = data.rating,
-        this.value = data.value
+        this._id = data._id || new UUID().toBinary();
+        this.rating = data.rating || null;
+        this.value = data.value || null;
     }
 }
 
 class Rank {
     constructor(data) {
-        this.id = data.id,
-        this.type = data.type
+        this._id = data._id || new UUID().toBinary();
+        this.type = data.type || null;
     }
 }
 
 class Images {
     constructor(data) {
-        this.id = data.id,
-        this.item = data.item,
-        this.blob = data.blob,
-        this.bitarray = data.bitarray,
-        this.url = data.url
+        this._id = data._id || new UUID().toBinary();
+        this.blob = data.blob || null;
+        this.bitarray = data.bitarray || null;
+        this.url = data.url || null;
     }
 }
 
 class Mastery {
     constructor(data) {
-        this.id = data.id,
-        this.toon = data.toon,
-        this.task = data.task,
-        this.amount = data.amount
+        this._id = data._id || new UUID().toBinary();
+        this.toons_id = data.toons_id || 0;
+        this.task = data.task || null;
+        this.amount = data.amount || null
     }
 }
 
 class Requirements {
     constructor(data) {
-        this.id = data.id,
-        this.item = data.item,
-        this.requirement = data.requirement,
-        this.amount = data.amount
+        this._id = data._id || new UUID().toBinary();
+        this.toons_id = data.toons_id || 0;
+        this.items_id = data.items_id || 0;
+        this.requirement = data.requirement || null;
+        this.amount = data.amount || null;
     }
 }
 
 class Trinkets {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.type = data.type,
-        this.image = data.image,
-        this.from = data.from,
-        this.effect = data.effect,
-        this.holiday = data.holiday,
-        this.other = data.other,
-        this.cost = data.cost
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name;
+        this.type = data.type || null;
+        this.image_id = data.image_id || 0;
+        this.twisteds_id = data.twisteds_id || 0;
+        this.effect = data.effect || null;
+        this.cost = data.cost || null;
     }
 }
 
 class Builds {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.toon = data.toon,
-        this.trinketOne = data.trinketOne,
-        this.trinketTwo = data.trinketTwo,
-        this.notes = data.notes
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name || null;
+        this.toons_id = data.toons_id || 0;
+        this.trinkets_id = data.trinkets_id || 0;
+        this.notes_id = data.notes_id || 0;
     }
 }
 
 class ToonStats {
     constructor(data) {
-        this.id = data.id,
-        this.toon = data.toon,
-        this.rank = data.rank,
-        this.health = data.health,
-        this.skillcheck = data.skillcheck,
-        this.speed = data.speed,
-        this.stamina = data.stamina,
-        this.stealth = data.stealth,
-        this.extraction = data.extraction,
-        this.light = data.light || null,
-        this.active = data.active ||null,
-        this.passive = data.passive ||null,
-        this.mastery = data.mastery,
-        this.requirements = data.requirements,
-        this.builds = data.builds,
-        this.image = data.image
+        this._id = data._id || new UUID().toBinary();
+        this.toons_id = data.toons_id || 0;
+        this.rank_id = data.rank_id || 0;
+        this.health_id = data.health_id || 0;
+        this.skillcheck_id = data.skillcheck_id || 0;
+        this.speed_id = data.speed_id || 0;
+        this.stamina_id = data.stamina_id || 0;
+        this.stealth_id = data.stealth_id || 0;
+        this.extraction_id = data.extraction_id || 0;
+        this.light_id = data.light_id || 0;
+        this.active_id = data.active_id || 0;
+        this.passive_id = data.passive_id || 0;
+        this.mastery_id = data.mastery_id || 0;
+        this.requirements_id = data.requirements_id || 0;
+        this.builds_id = data.builds_id || 0;
+        this.image_id = data.image_id || 0;
     }
 }
 
 class TwistedStats {
     constructor(data) {
-        this.id = data.id,
-        this.twisted = data.twisted,
-        this.rank = data.rank,
-        this.attention = data.attention,
-        this.detection = data.detection,
-        this.debuffs = data.debuffs,
-        this.speed = data.speed,
-        this.light = data.light,
-        this.trinket = data.trinket,
-        this.image = data.image
+        this._id = data._id || new UUID().toBinary();
+        this.twisteds_id = data.twisteds_id || 0;
+        this.rank_id = data.rank_id || 0;
+        this.attention_id = data.attention_id || 0;
+        this.detection_id = data.detection_id || 0;
+        this.debuffs_id = data.debuffs_id || 0;
+        this.speed_id = data.speed_id || 0;
+        this.light_id = data.light_id || 0;
+        this.trinket_id = data.trinket_id || 0;
+        this.image_id = data.image_id || 0;
     }
 }
 
-module.exports = { Active, Passive, Debuffs, Attention, Detection, Extraction, Health, Skillchecks, Speed, Stamina, Stealth, Light, Rank, Images, Mastery, Requirements, Trinkets, Builds, ToonStats, TwistedStats }
+class Notes {
+    constructor(data) {
+        this._id = data._id || new UUID().toBinary();
+        this.text = data.text || null;
+        this.name = data.name || null;
+        this.author = data.author || null;
+    }
+}
+
+module.exports = { Active, Passive, Debuffs, Attention, Detection, Extraction, Health, Skillchecks, Speed, Stamina, Stealth, Light, Rank, Images, Mastery, Requirements, Trinkets, Builds, ToonStats, TwistedStats, Notes }

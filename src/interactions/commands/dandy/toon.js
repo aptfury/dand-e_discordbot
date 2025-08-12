@@ -264,26 +264,12 @@ module.exports = {
             const addStats = createToonStats(newToon.stats);
             const addToon = createToon(newToon);
 
-            if (addStats && addToon) {
-                await interaction.reply('The toon and their stats have been sucessfully added.');
-                return;
-            }
-            else if (addStats) {
-                await interaction.reply('The stats for this toon have been added');
-                return;
-            }
-            else if (addToon) {
-                await interaction.reply('The toon has been added, please do not forget to add their stats');
-                return;
-            }
-            else {
-                await interaction.reply('An error occurred and the information could not be added into the database at this time. Please try again after verifying the information or reach out to bot admin.');
-                return;
-            }
+            await interaction.reply(`\`\`\`${addToon}\n\n${addStats}\`\`\``);
+            return;
         }
         else if (subcommand === 'view') {
-            const search = viewToon({ name: toon })
-            await interaction.reply(`\`\`\`${JSON.stringify(search, null, 4)}\`\`\``);
+            const search = viewToon({ name: toon });
+            await interaction.reply(`\`\`\`${JSON.parse(search)}\`\`\``);
             return;
         }
         else if (subcommand === 'update') {}

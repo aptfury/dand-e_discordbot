@@ -1,76 +1,78 @@
+const { UUID } = require('bson');
+
 class Items {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.rarity = data.rarity,
-        this.count = data.count,
-        this.effect = data.effect
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name || null;
+        this.rarity = data.rarity || null;
+        this.count = data.count || null;
+        this.effect = data.effect || null;
     }
 }
 
 class Cards {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.effect = data.effect
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name || null;
+        this.effect = data.effect || null;
     }
 }
 
 class Floors {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.rarity = data.rarity,
-        this.variants = data.variants,
-        this.info = data.info || null
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name || null;
+        this.rarity = data.rarity || null;
+        this.variants = data.variants || null;
+        this.info = data.info || null;
     }
 }
 
 class LoreRooms {
     constructor(data) {
-        this.id = data.id,
-        this.name = data.name,
-        this.floor = data.floor,
-        this.location = data.location,
-        this.info = data.info || null
+        this._id = data._id || new UUID().toBinary();
+        this.name = data.name || null;
+        this.floor = data.floor || null;
+        this.location = data.location || null;
+        this.toons_id = data.toons_id || 0;
+        this.info = data.info || null;
     }
 }
 
 class AfkSpot {
     constructor(data) {
-        this.id = data.id,
-        this.floor = data.floor,
-        this.location = data.location,
-        this.info = data.info || null
+        this._id = data._id || new UUID().toBinary();
+        this.floor = data.floor || null;
+        this.location = data.location || null;
+        this.info = data.info || null;
     }
 }
 
 class Lore {
     constructor(data) {
-        this.id = data.id,
-        this.character = data.character,
-        this.info = data.info
+        this._id = data._id || new UUID().toBinary();
+        this.toons_id = data.toons_id || 0;
+        this.info = data.info || null;
     }
 }
 
 class Conversation {
     constructor(data) {
-        this.id = data.id,
-        this.characterOne = data.characterOne,
-        this.characterTwo = data.characterTwo,
-        this.dialogue = data.dialogue
+        this._id = data._id || new UUID().toBinary();
+        this.toons_id = data.toons_id || 0;
+        this.dialogue = data.dialogue || null;
     }
 }
 
 class Character {
     constructor(data) {
-        this.id = data.id,
-        this.frequency = data.frequency
-        this.toon = data.toon,
-        this.twisted = data.twisted,
-        this.conversations = data.conversations,
-        this.lore = data.lore
+        this._id = data._id || new UUID().toBinary();
+        this.frequency = data.frequency || null;
+        this.toons_id = data.toons_id || 0;
+        this.twisteds_id = data.twisteds_id || 0;
+        this.conversations_id = data.conversations_id || 0;
+        this.lore_id = data.lore_id || 0;
     }
 }
 
-module.exports = { Items, Cards, Floors, LoreRooms, AfkSpot, Lore, Conversation, Character }
+module.exports = { Items, Cards, Floors, LoreRooms, AfkSpot, Lore, Conversation, Character };
