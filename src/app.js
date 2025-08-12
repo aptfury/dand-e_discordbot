@@ -33,7 +33,7 @@ const bot = new Client({
 /****************************
  *  COMMAND HANDLER
  ***************************/
-const commandsPath = path.join(__dirname, './interactions/commands');
+/* const commandsPath = path.join(__dirname, './interactions/commands');
 const commandFolders = fs.readdirSync(commandsPath);
 
 for (const folder of commandFolders) {
@@ -52,12 +52,12 @@ for (const folder of commandFolders) {
             console.error(`The command at ${filePath} is missing the "data" and/or "execute" property. [APP.JS]`);
         }
     }
-}
+} */
 
 /****************************
  *  CONTEXTS HANDLER
  ***************************/
-const contextsPath = path.join(__dirname, './interactions/contexts');
+/* const contextsPath = path.join(__dirname, './interactions/contexts');
 const contextFolders = fs.readdirSync(contextsPath);
 
 for (const folder of contextFolders) {
@@ -75,7 +75,7 @@ for (const folder of contextFolders) {
             console.error(`The context menu at ${filePath} is missing a required "data" or "execute" property. [APP.JS]`);
         }
     }
-}
+} */
 
 /****************************
  *  BOT READY EVENT
