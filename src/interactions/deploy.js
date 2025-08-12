@@ -1,5 +1,5 @@
 require('@dotenvx/dotenvx').config();
-const [ REST, Routes ] = require('discord.js');
+const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -12,11 +12,11 @@ const commandsPath = path.join(__dirname, './commands');
 const commandFolders = fs.readdirSync(commandsPath);
 
 for (const folder of commandFolders) {
-    const commandsPath = path.join(commandsPath, folder);
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+    const commandPath = path.join(commandsPath, folder);
+    const commandFiles = fs.readdirSync(commandPath).filter(file => file.endsWith('.js'));
 
     for (const file of commandFiles) {
-        const filePath = path.join(commandsPath, file);
+        const filePath = path.join(commandPath, file);
         const command = require(filePath);
 
         if ('data' in command && 'execute' in command) {
@@ -27,7 +27,7 @@ for (const folder of commandFolders) {
     }
 }
 
-const contextsPath = path.join(__dirname, './contexts');
+/* const contextsPath = path.join(__dirname, './contexts');
 const contextFolders = fs.readdirSync(contextsPath);
 
 for (const folder of contextFolders) {
@@ -44,7 +44,7 @@ for (const folder of contextFolders) {
             console.error(`The context menu at ${filePath} is missing a required "data" or "execute" property. [DEPLOY.JS]`);
         }
     }
-}
+} */
 
 const rest = new REST().setToken(token);
 
