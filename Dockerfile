@@ -12,5 +12,6 @@ COPY . .
 RUN dotenvx ext prebuild
 
 EXPOSE 3000
+EXPOSE 10000
 
 CMD ["dotenvx", "run", "--", "node", "src/app.js"]
