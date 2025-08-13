@@ -1,79 +1,120 @@
-const { con } = require('../connect.js');
+require('@dotenvx/dotenvx').config();
+
+const { MongClient } = require('mongodb');
+const { UUID } = require('bson');
+
 const Twisteds = require('../models/twisteds.js');
 
-const db = con.db("dand-e");
-const twisted = db.collection("twisteds");
+const uri = process.env.CONNECTION_STRING;
+
+const con = new MongoClient(uri);
 
 // CREATE
 
-async function createTwisted(data) {
+module.exports = async function create(data) {
     try {
-        await twisted.insertOne(data);
-        return true;
-    } catch (e) {
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
+
+        const result = await col.insertOne(data);
+
+        return `Twisted created. ID: ${result.insertedId}`;
+    }
+    catch (e) {
         console.error(e);
+    }
+    finally {
+        await con.close();
     }
 }
 
 // READ
 
-async function doesTwistedExist(data) {
+module.exports = async function find(data) {
     try {
-        if (await twisted.findOne(data)) return true;
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
+
+        if (await col.findOne(data)) return true;
 
         return false;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
-async function viewTwisted(data) {
+module.exports = async function view(data) {
     try {
-        const doc = await twisted.findOne(data);
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
 
-        return new Twisteds(doc);
+        const doc = await col.findOne(data);
+        const values = JSON.stringify(doc, null, 4);
+
+        return new Toons(...values);
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
-async function getTwistedId(data) {
+module.exports = async function id(data) {
     try {
-        const doc = await twisted.findOne(data);
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
+
+        const doc = await col.findOne(data);
 
         return doc.id;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
 // UPDATE
 
-async function updateTwisted(data, newData) {
+module.exports = async function update(data, newData) {
     try {
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
+
         // { $set: { ...keys: ...values } } will need to be in the command
-        await twisted.updateOne(data, newData);
+        await col.updateOne(data, newData);
         return true;
     }
     catch (e) {
         console.error(e);
-    
+    }
+    finally {
+        await con.close();
     }
 }
 
 // DELETE
 
-async function deleteTwisted(data) {
+module.exports = async function remove(data) {
     try {
-        await twisted.deleteOne(data);
+        const db = con.db("dand-e");
+        const col = db.collection("twisteds");
+
+        await col.deleteOne(data);
         return true;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
-
-module.exports = { createTwisted, doesTwistedExist, viewTwisted, getTwistedId, updateTwisted, deleteTwisted };

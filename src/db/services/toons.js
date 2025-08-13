@@ -7,109 +7,116 @@ const Toons = require('../models/toons.js');
 
 const uri = process.env.CONNECTION_STRING;
 
-const con = new MongoClient(uri, {
-    pkFactory: {
-        createPk() {
-            return new UUID().toBinary();
-        }
-    },
-    connectTimeoutMS: 10000
-});
+const con = new MongoClient(uri);
 
 // CREATE
 
-/**
- * 
- * @param {Toons} data 
- */
-module.exports = async function addToon(data) {
+async function create(data) {
     try {
         const db = con.db("dand-e");
         const col = db.collection("toons");
 
-        const doc = {
-            name: data.name,
-            gender: data.gender || null,
-            pronouns: data.pronouns || null,
-            stats: data.stats || null
-        }
+        const result = await col.insertOne(data);
 
-        const result = await col.insertOne(doc);
-
-        return true;
-    } finally {
+        return `Toon created. ID: ${data.name}`;
+    }
+    catch (e) {
+        console.error(e);
+    }
+    finally {
         await con.close();
     }
 }
 
-/* async function createToon(data) {
-    try {
-        const created = await toon.insertOne(data);
-        return JSON.stringify(created, null, 4);
-    } catch (e) {
-        console.error(e);
-    }
-} */
-
 // READ
 
-async function doesToonExist(data) {
+async function find(data) {
     try {
-        if (await toon.findOne(data)) return true;
+        const db = con.db("dand-e");
+        const col = db.collection("toons");
+
+        if (await col.findOne(data)) return true;
 
         return false;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
-async function viewToon(data) {
+async function view(data) {
     try {
-        const doc = await toon.findOne(data)
+        const db = con.db("dand-e");
+        const col = db.collection("toons");
 
-        return new Toons(JSON.stringify(doc, null, 4));
+        const doc = await col.findOne(data);
+        const values = JSON.stringify(doc, null, 4);
+
+        return `\`\`\`${values}\`\`\``;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
-async function getToonId(data) {
+module.exports = async function id(data) {
     try {
-        const doc = await toon.findOne(data);
+        const db = con.db("dand-e");
+        const col = db.collection("toons");
 
+        const doc = await col.findOne(data);
+        
         return doc.id;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
 // UPDATE
 
-async function updateToon(data, newData) {
+module.exports = async function update(data, newData) {
     try {
+        const db = con.db("dand-e");
+        const col = db.collection("toons");
+
         // { $set: { ...keys: ...values } } will need to be in the command
-        await toon.updateOne(data, newData);
+        await col.updateOne(data, newData);
         return true;
     }
     catch (e) {
         console.error(e);
-    
+    }
+    finally {
+        await con.close();
     }
 }
 
 // DELETE
 
-async function deleteToon(data) {
+module.exports = async function remove(data) {
     try {
-        await toon.deleteOne(data);
+        const db = con.db("dand-e");
+        const col = db.collection("toons");
+
+        await col.deleteOne(data);
         return true;
     }
     catch (e) {
         console.error(e);
     }
+    finally {
+        await con.close();
+    }
 }
 
-module.exports = { createToon, doesToonExist, viewToon, getToonId, updateToon, deleteToon };
+module.exports = { create, view, find };
